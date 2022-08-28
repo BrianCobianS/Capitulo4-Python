@@ -34,5 +34,5 @@ for x in range(len(ig)):
 plt.imshow(ig,cmap='gray')
 plt.axis('off')
 plt.savefig('Resta.png',bbox_inches='tight',pad_inches=0,dpi=1200)
-plt.title('Imagenes sumadas')
+plt.title('Imagenes restadas')
 plt.show()

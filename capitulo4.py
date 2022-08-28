@@ -44,10 +44,6 @@ def graficarEcua(datos):
 #IMAGEN 1
 Imagen='52.jpg'
 I=plt.imread(Imagen)
-plt.title('Imagen original')
-plt.imshow(I)
-plt.show()
-
 rgb = [0.2989, 0.5870, 0.1140]
 ig = np.dot(I[...,:3], rgb)
 plt.imshow(ig,cmap='gray')
@@ -55,89 +51,6 @@ plt.axis('off')
 plt.savefig('b&w.png',bbox_inches='tight',pad_inches=0,dpi=1200)
 plt.title('Imagen a escala de grises')
 plt.show()
-'''
-
-#1 procesamiento
-#Este for sirve para aumentar o disminuir el brillo mediante la multipliacaion de la informaicon de los pixels
-# for x in range(len(IC)):
-for x in range(len(ig)):
-    for h in range(len(ig[x])):
-            ig[x][h]=ig[x][h]*1.5
-            if ig[x][h]>=256: 
-                ig[x][h]=255
-plt.imshow(ig,cmap='gray')
-plt.axis('off')
-plt.savefig('Conaum.png',bbox_inches='tight',pad_inches=0,dpi=1200)
-plt.title('Imagen con el contraste aumentado')
-plt.show()
-for x in range(len(ig)):
-    for h in range(len(ig[x])):
-            ig[x][h]=ig[x][h]+10
-            if ig[x][h]>=256: 
-                ig[x][h]=255
-plt.imshow(ig,cmap='gray')
-plt.axis('off')
-plt.savefig('Brillo.png',bbox_inches='tight',pad_inches=0,dpi=1200)
-plt.title('Imagen con el brillo aumentado')
-plt.show()
-
-#ACCEDER AL RGB
-for x in range(len(I)):
-    for h in range(len(I[x])):
-        for f in range(len(I[x][h])):
-            I[x][h][f]=I[x][h][0]
-            if I[x][h][f]>=255: 
-                I[x][h][f]=254
-plt.imshow(I)
-plt.title("RGB 0")
-plt.show()
-'''
-
-#2 procesamiento            
-rgb = [0.2989, 0.5870, 0.1140]
-ig = np.dot(I[...,:3], rgb)
-IC=255-ig
-plt.imshow(IC,cmap='gray')
-plt.axis('off')
-plt.savefig('comp.png',bbox_inches='tight',pad_inches=0,dpi=1200)
-plt.title('Imagen complemento')
-plt.show()
-
-#1 Primer histograma
-from PIL import Image
-foto=Image.open('C:\\Users\\brian.cobian\\Desktop\\Scripts\\' + Imagen)
-#si la imagen es a color la convertimos a escala de grises
-if foto.mode != 'L':
-    foto=foto.convert('L')
-histograma=foto.histogram()
-graficar(histograma)
-
-
-"""
-#3 procesamiento segmentacion  
-h1=[]
-h2=[] 
-for x in range(len(ig)):
-    for h in range(len(ig[x])):
-            h1.append(ig[x][h])
-            if ig[x][h]<80: 
-                ig[x][h]=0
-            else:
-                ig[x][h]=1
-            h2.append(ig[x][h])
-plt.imshow(ig,cmap='gray')
-plt.axis('off')
-plt.savefig('segmentacion.png',bbox_inches='tight',pad_inches=0,dpi=1200)
-plt.title("Segmentacion por umbral")
-plt.savefig('temp', bbox_inches='tight')
-plt.show()
-foto=Image.open('C:\\Users\\brian.cobian\\Desktop\\Scripts\\temp.png')
-#si la imagen es a color la convertimos a escala de grises
-if foto.mode != 'L':
-    foto=foto.convert('L')
-histograma=foto.histogram()
-graficar(histograma)
-"""
 
 
 #Histograma acumulativo
